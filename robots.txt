@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://10pointstudios.com
+Sitemap: https://10pointstudios.com/sitemap.xml
