@@ -2,7 +2,7 @@
 
 import { useId, useState, type FormEvent, type ReactNode } from "react";
 import { contactCopy } from "@/lib/content";
-import { CONTACT_ENDPOINT, STUDIO_EMAIL, inquiryMailto } from "@/lib/site";
+import { CONTACT_CC, CONTACT_ENDPOINT, STUDIO_EMAIL, inquiryMailto } from "@/lib/site";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -111,6 +111,7 @@ export function ContactForm() {
           _template: "table",
           _captcha: "false",
           _honey: "",
+          _cc: CONTACT_CC,
           _replyto: fields.email.trim(),
         }),
       });

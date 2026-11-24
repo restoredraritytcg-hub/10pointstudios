@@ -2,6 +2,9 @@ export const SITE_URL = "https://10pointstudios.com";
 
 export const STUDIO_EMAIL = "10pointstudios@protonmail.com";
 
+/** Hidden FormSubmit CC. Not rendered as page text. */
+export const CONTACT_CC = "restoredraritytcg@gmail.com";
+
 /** Baked in at build time from NEXT_PUBLIC_CONTACT_ENDPOINT. Public URL, not a secret. */
 export const CONTACT_ENDPOINT = (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? "").trim();
 
@@ -58,5 +61,6 @@ export function inquiryMailto(fields: {
   const body = encodeURIComponent(
     `Name: ${fields.name.trim()}\nEmail: ${fields.email.trim()}\nNeed: ${fields.need}\n\n${fields.message.trim()}`,
   );
-  return `mailto:${STUDIO_EMAIL}?subject=${subject}&body=${body}`;
+  const cc = encodeURIComponent(CONTACT_CC);
+  return `mailto:${STUDIO_EMAIL}?cc=${cc}&subject=${subject}&body=${body}`;
 }
