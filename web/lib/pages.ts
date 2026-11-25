@@ -15,7 +15,7 @@ function workBySlug(slug: CaseSlug) {
 
 export const servicePages = {
   "web-design": {
-    path: "/web-design",
+    path: "/web-design/",
     title: "Web Design in Conroe, TX | 10Point Studios",
     description:
       "Custom websites for businesses in Conroe, The Woodlands and Houston: clear, fast, mobile-first and built to run the business.",
@@ -43,7 +43,7 @@ export const servicePages = {
     area: "Serving Conroe, The Woodlands and Houston.",
   },
   "app-development": {
-    path: "/app-development",
+    path: "/app-development/",
     title: "Custom Web App Development | 10Point Studios",
     description:
       "Web apps with accounts, subscriptions, customer portals and staff tools, built around how your business actually runs.",
@@ -52,7 +52,7 @@ export const servicePages = {
     workSlugs: ["scanstationiq", "pbg-cards-htx"] as const,
   },
   "website-maintenance": {
-    path: "/website-maintenance",
+    path: "/website-maintenance/",
     title: "Managed Website Maintenance | 10Point Studios",
     description:
       "Updates, fixes, content changes and care after launch, with one place to ask. Managed maintenance for the sites and apps we build.",
@@ -63,7 +63,7 @@ export const servicePages = {
     workSlugs: ["pbg-cards-htx", "restored-rarity"] as const,
   },
   "website-check": {
-    path: "/website-check",
+    path: "/website-check/",
     title: "Free Website Check & True North Audit | 10Point Studios",
     description:
       "Get a free 1-page website check with a score out of 10 and your top 3 fixes within 2 business days. Want more? The True North Audit goes deeper.",
@@ -73,7 +73,7 @@ export const servicePages = {
 } as const;
 
 export const workIndex = {
-  path: "/work",
+  path: "/work/",
   title: "Work: Websites & Apps We've Built | 10Point Studios",
   description:
     "Live websites and apps from 10Point Studios, and the problem each one solves: intake and tracking sites, shop platforms and a card-listing app.",
@@ -106,7 +106,7 @@ export const caseStudies: Record<
   }
 > = {
   "ph-restoration-labs": {
-    path: "/work/ph-restoration-labs",
+    path: "/work/ph-restoration-labs/",
     title: "PH Restoration Labs Website Case Study | 10Point Studios",
     description:
       "How 10Point Studios built PH Restoration Labs' site: online card submissions with photos, per-card quotes, reference-number tracking, shows and reviews.",
@@ -115,16 +115,16 @@ export const caseStudies: Record<
       "PH Restoration Labs, the restoration side of PH Collectibles HTX, Houston (as stated on their site).",
     problem: workBySlug("ph-restoration-labs").problem,
     built: `${workBySlug("ph-restoration-labs").built.slice(0, -1)}, and a staff intake and scan station.`,
-    cta: [{ href: "/website-check", label: "Get my free Website Check" }],
+    cta: [{ href: "/website-check/", label: "Get my free Website Check" }],
     services: [
-      { href: "/web-design", label: "Web design" },
-      { href: "/website-maintenance", label: "Managed maintenance" },
+      { href: "/web-design/", label: "Web design" },
+      { href: "/website-maintenance/", label: "Managed maintenance" },
     ],
-    sibling: { href: "/work/ripperdoc-tcg", label: "RipperDoc TCG" },
+    sibling: { href: "/work/ripperdoc-tcg/", label: "RipperDoc TCG" },
     about: { type: "Organization", name: "PH Restoration Labs", url: "https://phrestorationlab.com" },
   },
   "ripperdoc-tcg": {
-    path: "/work/ripperdoc-tcg",
+    path: "/work/ripperdoc-tcg/",
     title: "RipperDoc TCG Website Case Study | 10Point Studios",
     description:
       "How 10Point Studios launched RipperDoc TCG on its shared service platform: intake and tracking, turnaround choices, add-ons, delivery options and reviews.",
@@ -133,13 +133,13 @@ export const caseStudies: Record<
     problem: workBySlug("ripperdoc-tcg").problem,
     built: workBySlug("ripperdoc-tcg").built,
     platformNote: "Already running, ready to reuse.",
-    cta: [{ href: "/website-check", label: "Get my free Website Check" }],
-    services: [{ href: "/web-design", label: "Web design" }],
-    sibling: { href: "/work/ph-restoration-labs", label: "PH Restoration Labs" },
+    cta: [{ href: "/website-check/", label: "Get my free Website Check" }],
+    services: [{ href: "/web-design/", label: "Web design" }],
+    sibling: { href: "/work/ph-restoration-labs/", label: "PH Restoration Labs" },
     about: { type: "Organization", name: "RipperDoc TCG", url: "https://theripperdoctcg.com" },
   },
   "pbg-cards-htx": {
-    path: "/work/pbg-cards-htx",
+    path: "/work/pbg-cards-htx/",
     title: "PBG Cards & Collectibles Website & Apps | 10Point Studios",
     description:
       "How 10Point Studios built PBG Cards & Collectibles HTX a shop site, QR order tracking, a staff portal and an iPad intake app for its Spring, TX store.",
@@ -154,19 +154,19 @@ export const caseStudies: Record<
       text: "Community Impact covered PBG\u2019s opening (\u201cPBG Cards & Collectibles opens near The Woodlands\u201d).",
     },
     cta: [
-      { href: "/website-check", label: "Get my free Website Check" },
-      { href: "/app-development", label: "App development" },
+      { href: "/website-check/", label: "Get my free Website Check" },
+      { href: "/app-development/", label: "App development" },
     ],
     services: [
-      { href: "/app-development", label: "App development" },
-      { href: "/web-design", label: "Web design" },
-      { href: "/website-maintenance", label: "Managed maintenance" },
+      { href: "/app-development/", label: "App development" },
+      { href: "/web-design/", label: "Web design" },
+      { href: "/website-maintenance/", label: "Managed maintenance" },
     ],
-    sibling: { href: "/work/scanstationiq", label: "ScanStationIQ" },
+    sibling: { href: "/work/scanstationiq/", label: "ScanStationIQ" },
     about: { type: "Store", name: "PBG Cards & Collectibles HTX", url: "https://pbgcardshtx.com" },
   },
   scanstationiq: {
-    path: "/work/scanstationiq",
+    path: "/work/scanstationiq/",
     title: "ScanStationIQ App Case Study | 10Point Studios",
     description:
       "How 10Point Studios built ScanStationIQ: accounts and plans, phone or scanner intake, auto-straightening and centering, and eBay-ready photo packs.",
@@ -174,13 +174,13 @@ export const caseStudies: Record<
     client: "ScanStationIQ is a studio-built product.",
     problem: workBySlug("scanstationiq").problem,
     built: workBySlug("scanstationiq").built,
-    cta: [{ href: "/app-development", label: "App development" }],
-    services: [{ href: "/app-development", label: "App development" }],
-    sibling: { href: "/work/pbg-cards-htx", label: "PBG Cards & Collectibles HTX" },
+    cta: [{ href: "/app-development/", label: "App development" }],
+    services: [{ href: "/app-development/", label: "App development" }],
+    sibling: { href: "/work/pbg-cards-htx/", label: "PBG Cards & Collectibles HTX" },
     about: { type: "SoftwareApplication", name: "ScanStationIQ", url: "https://scanstationiq.com" },
   },
   "restored-rarity": {
-    path: "/work/restored-rarity",
+    path: "/work/restored-rarity/",
     title: "Restored Rarity TCG Website & Portal | 10Point Studios",
     description:
       "How 10Point Studios built Restored Rarity\u2019s site and portal: galleries, quote and centering calculators, submit-and-track and an admin dashboard.",
@@ -189,9 +189,9 @@ export const caseStudies: Record<
       "Restored Rarity TCG is the card-restoration business Scott built and still runs, and a site the studio built and still maintains for an active business.",
     problem: workBySlug("restored-rarity").problem,
     built: workBySlug("restored-rarity").built,
-    cta: [{ href: "/web-design", label: "Web design" }],
-    services: [{ href: "/web-design", label: "Web design" }],
-    sibling: { href: "/work/ph-restoration-labs", label: "PH Restoration Labs" },
+    cta: [{ href: "/web-design/", label: "Web design" }],
+    services: [{ href: "/web-design/", label: "Web design" }],
+    sibling: { href: "/work/ph-restoration-labs/", label: "PH Restoration Labs" },
     about: { type: "Organization", name: "Restored Rarity TCG", url: "https://restoredraritytcg.com" },
   },
 };
@@ -316,3 +316,18 @@ export const trueNorth = {
 
 export const processSteps = process.steps;
 export const founderLine = about.body;
+
+/**
+ * datePublished for case-study Article schema and og:article:published_time.
+ * Each value is the date the page source was first committed (git history),
+ * not an invented launch date:
+ *   ph-restoration-labs, pbg-cards-htx: 1d03ef6 (2026-11-25)
+ *   ripperdoc-tcg, scanstationiq, restored-rarity: 640259e (2026-11-25)
+ */
+export const caseStudyPublished: Record<CaseSlug, string> = {
+  "ph-restoration-labs": "2026-11-25",
+  "ripperdoc-tcg": "2026-11-25",
+  "pbg-cards-htx": "2026-11-25",
+  scanstationiq: "2026-11-25",
+  "restored-rarity": "2026-11-25",
+};
