@@ -3,7 +3,6 @@ import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
 import { Mark } from "@/components/Mark";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { ToConfirm } from "@/components/ToConfirm";
 import {
   about,
   capabilities,
@@ -15,7 +14,6 @@ import {
   websiteCheckBanner,
   websiteCheckSlot,
   work,
-  workConfirm,
   workIntro,
 } from "@/lib/content";
 import { pageMeta } from "@/lib/meta";
@@ -33,15 +31,12 @@ function indexLabel(index: number) {
 function WorkPoints({
   problem,
   built,
-  confirm,
 }: {
   problem: string;
   built: string;
-  confirm?: string;
 }) {
   return (
     <div className="work-points">
-      {confirm ? <ToConfirm>{confirm}</ToConfirm> : null}
       <p className="work-point">
         <span className="work-label">Problem</span>
         {problem}
@@ -191,11 +186,7 @@ export default function HomePage() {
                 <div className="work-copy">
                   <span className="work-kind">{featured.kind}</span>
                   <h3>{featured.name}</h3>
-                  <WorkPoints
-                    problem={featured.problem}
-                    built={featured.built}
-                    confirm={workConfirm(featured)}
-                  />
+                  <WorkPoints problem={featured.problem} built={featured.built} />
                   <a className="work-url" href={`/work/${featured.slug}`}>
                     Read the case study <span className="arrow">{"\u2192"}</span>
                   </a>
@@ -214,11 +205,7 @@ export default function HomePage() {
                   <div className="work-meta">
                     <span className="work-kind">{item.kind}</span>
                     <h3>{item.name}</h3>
-                    <WorkPoints
-                      problem={item.problem}
-                      built={item.built}
-                      confirm={workConfirm(item)}
-                    />
+                    <WorkPoints problem={item.problem} built={item.built} />
                     <a className="work-url" href={`/work/${item.slug}`}>
                       Read the case study <span className="arrow">{"\u2192"}</span>
                     </a>

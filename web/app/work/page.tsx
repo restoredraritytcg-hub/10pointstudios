@@ -1,8 +1,7 @@
 import { BrowserShot } from "@/components/BrowserShot";
 import { PageShell } from "@/components/SiteChrome";
 import { PageHero, Section } from "@/components/InnerPages";
-import { ToConfirm } from "@/components/ToConfirm";
-import { work, workConfirm, workIntro } from "@/lib/content";
+import { work, workIntro } from "@/lib/content";
 import { pageMeta } from "@/lib/meta";
 import { workIndex } from "@/lib/pages";
 import { collectionGraph } from "@/lib/schema";
@@ -33,7 +32,6 @@ export default function WorkIndexPage() {
               <div className="work-meta">
                 <span className="work-kind">{item.kind}</span>
                 <h3>{item.name}</h3>
-                {workConfirm(item) ? <ToConfirm>{workConfirm(item)}</ToConfirm> : null}
                 <p className="work-point">
                   <span className="work-label">Problem</span>
                   {item.problem}
