@@ -25,6 +25,12 @@ const stale = [
   "robots.txt",
   "sitemap.xml",
   "manifest.webmanifest",
+  "web-design",
+  "app-development",
+  "website-maintenance",
+  "website-check",
+  "work",
+  "404",
 ];
 
 for (const name of stale) {
