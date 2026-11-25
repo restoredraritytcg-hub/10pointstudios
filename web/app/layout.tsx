@@ -18,11 +18,9 @@ export const metadata: Metadata = {
   applicationName: "10Point Studios",
   authors: [{ name: "Scott Shipley" }],
   robots: { index: true, follow: true },
-  alternates: { canonical: SITE_URL },
   openGraph: {
     title: SOCIAL_TITLE,
     description: SOCIAL_DESCRIPTION,
-    url: SITE_URL,
     siteName: "10Point Studios",
     locale: "en_US",
     type: "website",
