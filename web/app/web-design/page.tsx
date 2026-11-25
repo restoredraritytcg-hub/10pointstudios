@@ -29,9 +29,14 @@ export default function WebDesignPage() {
           { name: "Home", path: "/" },
           { name: "Web design", path: page.path },
         ],
+        faq: page.faqs,
       })}
     >
-      <PageHero kicker="Web design" title={page.h1} crumbs={crumbs} />
+      <PageHero kicker="Web design" title={page.h1} intro={page.intro} crumbs={crumbs} />
+      <Section>
+        <h2>{page.valuePoint.title}</h2>
+        <p>{page.valuePoint.body}</p>
+      </Section>
       <Section>
         <h2>What{"\u2019"}s included</h2>
         <div className="cards four">
@@ -74,6 +79,17 @@ export default function WebDesignPage() {
             Start a project
           </a>
         </div>
+      </Section>
+      <Section>
+        <h2>FAQ</h2>
+        <dl className="faq">
+          {page.faqs.map((item) => (
+            <div key={item.q}>
+              <dt>{item.q}</dt>
+              <dd>{item.a}</dd>
+            </div>
+          ))}
+        </dl>
       </Section>
     </PageShell>
   );

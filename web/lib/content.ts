@@ -4,7 +4,7 @@ export const hero = {
   eyebrow: "10POINT STUDIOS",
   title: "Websites and apps, built to a 10.",
   subhead:
-    "Design, build and managed maintenance under one roof, for businesses that need their site to actually run the business.",
+    "Enterprise-grade websites and apps at small-business prices, with design, build and managed maintenance under one roof.",
   primary: "Start a project",
   secondary: "See the work",
 } as const;

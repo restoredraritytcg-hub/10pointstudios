@@ -21,6 +21,18 @@ export const servicePages = {
       "Custom websites for businesses in Conroe, The Woodlands and Houston: clear, fast, mobile-first and built to run the business.",
     h1: "Web design for businesses that need their site to work",
     serviceType: "Web design",
+    intro:
+      "Professional, fast, search-ready websites for Conroe, The Woodlands and Houston businesses, built to a 10 and priced so a small business can say yes.",
+    valuePoint: {
+      title: "Affordable, without cutting corners",
+      body: "You get the same standards we\u2019ve used on major-brand projects, with clean design, mobile-first builds and solid SEO basics, at a price built for small businesses. Low monthly managed maintenance keeps your site updated and running after launch, so there are no surprise agency invoices.",
+    },
+    faqs: [
+      {
+        q: "Are your websites affordable?",
+        a: "Yes. 10Point Studios is built to give small businesses, creators and hobbyists an enterprise-quality website at a price that fits a small-business budget, and managed maintenance is a low monthly fee. Want to see where your current site stands first? Start with a free Website Check.",
+      },
+    ],
     included: [
       { title: "Custom design", body: "Clear, fast, mobile-first websites built to run the business." },
       { title: "Intake forms", body: capabilities[1].body },

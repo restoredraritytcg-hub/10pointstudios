@@ -30,7 +30,7 @@ export function serviceGraph({
   path: string;
   name: string;
   crumbs: Crumb[];
-  faq?: { q: string; a: string }[];
+  faq?: readonly { q: string; a: string }[];
 }) {
   const graph: unknown[] = [
     {
