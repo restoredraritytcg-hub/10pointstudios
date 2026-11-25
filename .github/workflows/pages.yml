@@ -1,0 +1,69 @@
+# Builds the Next.js static export in web/ and publishes ONLY web/out to GitHub Pages.
+# Nothing else in the repo (web/ source, env files, scripts) is served.
+#
+# Until Settings -> Pages -> Source is switched to "GitHub Actions" and the repo
+# variable PAGES_DEPLOY_FROM_ACTIONS is set to "true", the deploy job is skipped
+# and the site keeps serving the committed root export (Deploy from a branch).
+# The build job still runs on every push and PR as a check.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - name: Check the export has no source or env files
+        run: |
+          set -e
+          test -f out/index.html
+          if find out -name '.env*' -o -name '*.ts' -o -name '*.tsx' -o -name 'package*.json' | grep .; then
+            echo "Source or env files found in the export." >&2
+            exit 1
+          fi
+          if [ -e out/web ]; then echo "out/web must not exist." >&2; exit 1; fi
+          if grep -rIl '\[to confirm\]' out; then echo "Unresolved [to confirm] in export." >&2; exit 1; fi
+      - name: Add CNAME and .nojekyll
+        run: |
+          cp ../CNAME out/CNAME
+          touch out/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: web/out
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.PAGES_DEPLOY_FROM_ACTIONS == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
