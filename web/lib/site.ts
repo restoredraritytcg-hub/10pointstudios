@@ -4,11 +4,22 @@ export const STUDIO_ID = `${SITE_URL}/#studio`;
 
 export const STUDIO_EMAIL = "10pointstudios@protonmail.com";
 
-/** Hidden FormSubmit CC. Not rendered as page text. */
-export const CONTACT_CC = "restoredraritytcg@gmail.com";
+/**
+ * Hidden FormSubmit CC. Not rendered as page text, but it is in the public JS
+ * bundle because FormSubmit only accepts _cc from the submitted form.
+ * Override with NEXT_PUBLIC_CONTACT_CC at build time. Set it to an empty string
+ * once the studio inbox forwards to this mailbox, and it drops out of the bundle.
+ */
+export const CONTACT_CC = (process.env.NEXT_PUBLIC_CONTACT_CC ?? "restoredraritytcg@gmail.com").trim();
 
-/** Baked in at build time from NEXT_PUBLIC_CONTACT_ENDPOINT. Public URL, not a secret. */
-export const CONTACT_ENDPOINT = (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? "").trim();
+/** Public, keyless FormSubmit AJAX endpoint (the studio address is printed on the site). */
+export const DEFAULT_CONTACT_ENDPOINT = `https://formsubmit.co/ajax/${STUDIO_EMAIL}`;
+
+/**
+ * Build-time override from NEXT_PUBLIC_CONTACT_ENDPOINT (for example the FormSubmit
+ * random-string alias). Public URL, not a secret. Env files are not committed.
+ */
+export const CONTACT_ENDPOINT = (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || DEFAULT_CONTACT_ENDPOINT).trim();
 
 export const PAGE_TITLE =
   "10Point Studios | Website & App Development · Conroe & Houston, TX";
@@ -30,7 +41,9 @@ export const jsonLd = {
   "@type": "ProfessionalService",
   "@id": STUDIO_ID,
   name: "10Point Studios",
-  url: SITE_URL,
+  url: `${SITE_URL}/`,
+  logo: `${SITE_URL}/icons/apple-touch-icon.png`,
+  image: `${SITE_URL}/og.jpg`,
   slogan: "Built to a 10.",
   description: "Website and app design, development and managed maintenance for businesses.",
   founder: { "@type": "Person", name: "Scott Shipley" },
@@ -57,15 +70,15 @@ export const footerProjects = [
 ] as const;
 
 export const footerServices = [
-  { name: "Web design", href: "/web-design" },
-  { name: "App development", href: "/app-development" },
-  { name: "Maintenance", href: "/website-maintenance" },
-  { name: "Free Website Check", href: "/website-check" },
+  { name: "Web design", href: "/web-design/" },
+  { name: "App development", href: "/app-development/" },
+  { name: "Maintenance", href: "/website-maintenance/" },
+  { name: "Free Website Check", href: "/website-check/" },
 ] as const;
 
 /** Canonical / schema URL. Trailing slash on inner routes matches the static export. */
 export function pageUrl(path = "/"): string {
-  if (!path || path === "/") return SITE_URL;
+  if (!path || path === "/") return `${SITE_URL}/`;
   const clean = path.startsWith("/") ? path : `/${path}`;
   return `${SITE_URL}${clean.endsWith("/") ? clean : `${clean}/`}`;
 }
@@ -106,6 +119,6 @@ export function inquiryMailto(fields: {
     .filter((line, index, all) => line !== "" || all[index - 1] !== "")
     .join("\n");
   const body = encodeURIComponent(extra);
-  const cc = encodeURIComponent(CONTACT_CC);
-  return `mailto:${STUDIO_EMAIL}?cc=${cc}&subject=${subject}&body=${body}`;
+  const cc = CONTACT_CC ? `cc=${encodeURIComponent(CONTACT_CC)}&` : "";
+  return `mailto:${STUDIO_EMAIL}?${cc}subject=${subject}&body=${body}`;
 }

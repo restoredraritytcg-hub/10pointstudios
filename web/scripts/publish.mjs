@@ -31,6 +31,7 @@ const stale = [
   "website-check",
   "work",
   "404",
+  "fonts",
 ];
 
 for (const name of stale) {
