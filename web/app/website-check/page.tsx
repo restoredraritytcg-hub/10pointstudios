@@ -1,6 +1,5 @@
 import { PageShell } from "@/components/SiteChrome";
 import { PageHero, Section } from "@/components/InnerPages";
-import { ToConfirm } from "@/components/ToConfirm";
 import { WebsiteCheckForm } from "@/components/WebsiteCheckForm";
 import { pageMeta } from "@/lib/meta";
 import { servicePages, trueNorth } from "@/lib/pages";
@@ -74,17 +73,13 @@ export default function WebsiteCheckPage() {
                 <tr key={row.label}>
                   <th scope="row">{row.label}</th>
                   <td>{row.free}</td>
-                  <td>
-                    {row.audit}
-                    {row.label === "Delivered" ? <ToConfirm>{trueNorth.sevenDayConfirm}</ToConfirm> : null}
-                  </td>
+                  <td>{row.audit}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         <p>{trueNorth.creditNote}</p>
-        <ToConfirm>{trueNorth.creditConfirm}</ToConfirm>
         <p>{trueNorth.competitorNote}</p>
       </Section>
 
@@ -98,8 +93,6 @@ export default function WebsiteCheckPage() {
             </li>
           ))}
         </ol>
-        <ToConfirm>{trueNorth.sevenDayConfirm}</ToConfirm>
-        <ToConfirm>{trueNorth.creditConfirm}</ToConfirm>
       </Section>
 
       <Section>
@@ -108,7 +101,6 @@ export default function WebsiteCheckPage() {
           <strong>{trueNorth.creditLead}</strong>
         </p>
         <p>{trueNorth.creditBody}</p>
-        <ToConfirm>{trueNorth.creditConfirm}</ToConfirm>
       </Section>
 
       <Section>
@@ -145,14 +137,12 @@ export default function WebsiteCheckPage() {
       <Section dark id="true-north-order">
         <h2>True North Audit authorization</h2>
         <p>{trueNorth.acknowledgment}</p>
-        <ToConfirm>{trueNorth.acknowledgmentLiability}</ToConfirm>
       </Section>
 
       <Section dark id="request">
         <h2>{trueNorth.finalTitle}</h2>
         <p>{trueNorth.finalBody}</p>
         <p>{trueNorth.formIntro}</p>
-        <ToConfirm>{trueNorth.formFieldsConfirm}</ToConfirm>
         <WebsiteCheckForm />
         <p className="form-alt">
           {trueNorth.questions.split("Email ")[0]}

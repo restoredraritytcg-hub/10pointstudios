@@ -128,7 +128,6 @@ export const work = [
     height: 900,
     featured: false,
     slug: "pbg-cards-htx",
-    problemConfirm: "[confirm wording with PBG]",
     problem:
       "A busy card shop needed its website, counter intake and order updates to work as one system.",
     built:
@@ -225,10 +224,3 @@ export const cta = {
   body: "We’ll scope it with you.",
   button: "Start a project",
 } as const;
-
-export function workConfirm(item: (typeof work)[number]): string | undefined {
-  if ("problemConfirm" in item && typeof item.problemConfirm === "string") {
-    return item.problemConfirm;
-  }
-  return undefined;
-}

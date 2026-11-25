@@ -1,6 +1,5 @@
 import { BrowserShot } from "@/components/BrowserShot";
-import { ToConfirm } from "@/components/ToConfirm";
-import { work, workConfirm } from "@/lib/content";
+import { work } from "@/lib/content";
 import type { CaseSlug } from "@/lib/pages";
 import { caseStudies } from "@/lib/pages";
 import { liveSiteHref } from "@/lib/site";
@@ -79,7 +78,6 @@ export function WorkTeasers({ slugs }: { slugs: readonly string[] }) {
           <div className="work-meta">
             <span className="work-kind">{item.kind}</span>
             <h3>{item.name}</h3>
-            {workConfirm(item) ? <ToConfirm>{workConfirm(item)}</ToConfirm> : null}
             <p className="work-point">
               <span className="work-label">Problem</span>
               {item.problem}
@@ -148,11 +146,8 @@ export function CaseStudyView({ slug }: { slug: CaseSlug }) {
       <Section>
         <h2>The client</h2>
         <p>{study.client}</p>
-        {study.displayNote ? <ToConfirm>{study.displayNote}</ToConfirm> : null}
-        {slug === "ripperdoc-tcg" ? <ToConfirm>Location [to confirm]</ToConfirm> : null}
         <LiveLink href={item.href} label={item.url} utm={utm} />
         <h2>The problem</h2>
-        {study.problemConfirm ? <ToConfirm>{study.problemConfirm}</ToConfirm> : null}
         <p>{study.problem}</p>
         <h2>What we built</h2>
         <p>{study.built}</p>
@@ -166,25 +161,26 @@ export function CaseStudyView({ slug }: { slug: CaseSlug }) {
           <>
             <h2>In the news</h2>
             <p>{study.news.text}</p>
-            <ToConfirm>{study.news.confirm}</ToConfirm>
           </>
         ) : null}
-        <h2>Results</h2>
-        <ToConfirm>
-          {slug === "ph-restoration-labs" ? "[to confirm with client]" : "[to confirm]"}
-        </ToConfirm>
-        {slug === "scanstationiq" ? null : (
+        {study.results ? (
+          <>
+            <h2>Results</h2>
+            <p>{study.results}</p>
+          </>
+        ) : null}
+        {study.quote ? (
           <>
             <h2>Client quote</h2>
-            <ToConfirm>
-              {slug === "ph-restoration-labs"
-                ? "[to confirm: exact quote and permission from Alfonso]"
-                : "[to confirm]"}
-            </ToConfirm>
+            <p>{study.quote}</p>
           </>
-        )}
-        <h2>Launch date</h2>
-        <ToConfirm>[to confirm]</ToConfirm>
+        ) : null}
+        {study.launchDate ? (
+          <>
+            <h2>Launch date</h2>
+            <p>{study.launchDate}</p>
+          </>
+        ) : null}
         <CaseCtas study={study} />
       </Section>
     </>

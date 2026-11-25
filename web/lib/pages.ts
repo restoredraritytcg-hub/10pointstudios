@@ -83,7 +83,10 @@ export const caseStudies: Record<
     builtExtra?: string;
     platformNote?: string;
     framing?: string;
-    news?: { text: string; confirm: string };
+    quote?: string;
+    results?: string;
+    launchDate?: string;
+    news?: { text: string };
     cta: { href: string; label: string }[];
     services: { href: string; label: string }[];
     sibling: { href: string; label: string };
@@ -115,7 +118,6 @@ export const caseStudies: Record<
       "How 10Point Studios launched RipperDoc TCG on its shared service platform: intake and tracking, turnaround choices, add-ons, delivery options and reviews.",
     h1: "RipperDoc TCG: a full restoration storefront without a from-scratch build",
     client: "RipperDoc TCG, a trading card cleaning, repair and restoration brand.",
-    displayNote: "[confirm preferred display name]",
     problem: workBySlug("ripperdoc-tcg").problem,
     built: workBySlug("ripperdoc-tcg").built,
     platformNote: "Already running, ready to reuse.",
@@ -134,12 +136,10 @@ export const caseStudies: Record<
       "PBG Cards & Collectibles HTX, a sports card and Pok\u00e9mon shop at 25170 I-45 N, Spring, TX (as stated on their site).",
     problem:
       "A busy card shop needed its website, counter intake and customers\u2019 order updates to work as one system.",
-    problemConfirm: "[confirm wording with PBG]",
     built:
       "The public website; a private order-status page customers reach from the QR code on their receipt; a staff portal for orders, grading stages, pickup clock and payouts, with a Website editor for hours, announcements, homepage, promos, events, shop photos and the Instagram grid; and an iPad intake app.",
     news: {
       text: "Community Impact covered PBG\u2019s opening (\u201cPBG Cards & Collectibles opens near The Woodlands\u201d).",
-      confirm: "[to confirm: whether PBG is happy for 10Point to link the Community Impact article]",
     },
     cta: [
       { href: "/website-check", label: "Get my free Website Check" },
@@ -236,25 +236,23 @@ export const trueNorth = {
       free: "1-page PDF with a score out of 10 and your top 3 fixes",
       audit: "Full report, prioritized action plan and a 30-minute walkthrough call",
     },
-    { label: "Delivered", free: "Within 2 business days", audit: "Within 7 days" },
+    { label: "Delivered", free: "Within 2 business days", audit: "Within 7 business days" },
   ],
   creditNote:
-    "*Credited in full toward a 10Point Studios website or app build signed within 60 days.",
-  creditConfirm: "[to confirm: when the 60 days start]",
-  sevenDayConfirm: "[to confirm: whether \u201cwithin 7 days\u201d is calendar days or business days]",
+    "*Credited in full toward a 10Point Studios website or app build signed within 60 days of audit delivery.",
   competitorNote: "Competitor comparisons use public pages only and never include a security review.",
   howItWorksTitle: "How it works",
   steps: [
     "Request your Free Website Check. Send us your website and a little about your business.",
     "Get your 1-page report. Within 2 business days you receive your score out of 10 and your top 3 fixes.",
     "Go deeper with the True North Audit. Choose 3 local competitors together with us, and sign a short authorization for the passive security review.",
-    "Get your roadmap. Within 7 days you receive the full report and a prioritized action plan, and we walk you through both on a 30-minute call.",
-    "Build when you\u2019re ready. Sign a 10Point website or app build within 60 days and your audit fee is 100% credited toward it.",
+    "Get your roadmap. Within 7 business days you receive the full report and a prioritized action plan, and we walk you through both on a 30-minute call.",
+    "Build when you\u2019re ready. Sign a 10Point website or app build within 60 days of audit delivery and your audit fee is 100% credited toward it.",
   ],
   creditTitle: "Your audit counts toward your build",
   creditLead: "The True North Audit isn\u2019t an extra cost. It\u2019s the first step of your build.",
   creditBody:
-    "The audit is a one-time fee. If you sign a 10Point Studios website or app build within 60 days, we credit the full fee toward the total cost of your project. Your build starts from a plan grounded in research, not a blank page.",
+    "The audit is a one-time fee. If you sign a 10Point Studios website or app build within 60 days of audit delivery, we credit the full fee toward the total cost of your project. Your build starts from a plan grounded in research, not a blank page.",
   whoTitle: "Who it\u2019s for",
   who: [
     "Business owners whose website feels dated, confusing or slow.",
@@ -288,7 +286,7 @@ export const trueNorth = {
     },
     {
       q: "How does the credit work?",
-      a: "The True North Audit is a one-time fee. If you sign a 10Point Studios website or app build within 60 days, the full fee is credited toward the total cost of your project.",
+      a: "The True North Audit is a one-time fee. If you sign a 10Point Studios website or app build within 60 days of audit delivery, the full fee is credited toward the total cost of your project.",
     },
     {
       q: "Do I have to build with you afterward?",
@@ -301,9 +299,6 @@ export const trueNorth = {
   questions: "Questions? Email 10pointstudios@protonmail.com. We reply within 1 business day.",
   acknowledgment:
     "By ordering, you confirm that you own or are authorized to approve review of the website(s) listed, and you authorize 10Point Studios to perform a passive, non-invasive review of their publicly visible content, performance and security settings. Findings are a point-in-time snapshot and recommendations, not a guarantee of security, rankings or results. We keep your report confidential.",
-  acknowledgmentLiability: "[to confirm \u2014 ATTORNEY: liability limited to the audit fee paid.]",
-  formFieldsConfirm:
-    "[to confirm: what fields the free-check form asks for. Copy says \u201cyour website and a little about your business.\u201d]",
   formIntro: "Send us your website and a little about your business.",
 };
 
