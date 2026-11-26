@@ -76,7 +76,9 @@ export function articleGraph({
   image,
   about,
   crumbs,
+  datePublished,
 }: {
+  datePublished?: string;
   headline: string;
   path: string;
   image: string;
@@ -90,6 +92,7 @@ export function articleGraph({
         "@type": "Article",
         headline,
         image: assetUrl(image),
+        ...(datePublished ? { datePublished } : {}),
         author: { "@id": STUDIO_ID },
         publisher: { "@id": STUDIO_ID },
         mainEntityOfPage: pageUrl(path),
