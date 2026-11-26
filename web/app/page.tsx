@@ -1,14 +1,40 @@
 import { BrowserShot } from "@/components/BrowserShot";
 import { ContactForm } from "@/components/ContactForm";
-import { Mark, Wordmark } from "@/components/Mark";
-import { about, capabilities, capabilitiesIntro, contactCopy, cta, hero, process, work, workIntro } from "@/lib/content";
-import { footerProjects, jsonLd, STUDIO_EMAIL } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { Mark } from "@/components/Mark";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import {
+  about,
+  capabilities,
+  capabilitiesIntro,
+  contactCopy,
+  cta,
+  hero,
+  process,
+  websiteCheckBanner,
+  websiteCheckSlot,
+  work,
+  workIntro,
+} from "@/lib/content";
+import { pageMeta } from "@/lib/meta";
+import { META_DESCRIPTION, PAGE_TITLE, jsonLd, STUDIO_EMAIL } from "@/lib/site";
+
+export const metadata = {
+  ...pageMeta({ title: PAGE_TITLE, description: META_DESCRIPTION, path: "/" }),
+  title: PAGE_TITLE,
+};
 
 function indexLabel(index: number) {
   return String(index + 1).padStart(2, "0");
 }
 
-function WorkPoints({ problem, built }: { problem: string; built: string }) {
+function WorkPoints({
+  problem,
+  built,
+}: {
+  problem: string;
+  built: string;
+}) {
   return (
     <div className="work-points">
       <p className="work-point">
@@ -29,26 +55,15 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="site-header theme-dark">
+      <SiteHeader />
+      <div className="site-banner">
         <div className="wrap">
-          <a className="brand" href="#top" aria-label="10Point Studios home">
-            <Mark />
-            <Wordmark />
-          </a>
-          <nav className="nav" aria-label="Primary">
-            <a href="#services">Capabilities</a>
-            <a href="#work">Work</a>
-            <a href="#process">Process</a>
-            <a href="#about">About</a>
-            <a className="btn btn-accent" href="#contact">
-              Start a project
-            </a>
-          </nav>
-          <button className="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-            <span />
-          </button>
+          <p>
+            <strong>{websiteCheckBanner.label}</strong> {websiteCheckBanner.body}
+          </p>
+          <a href="/website-check">{websiteCheckBanner.button}</a>
         </div>
-      </header>
+      </div>
       <main id="main">
         <section className="hero theme-dark" id="top">
           <div className="atmosphere" aria-hidden="true">
@@ -126,6 +141,9 @@ export default function HomePage() {
                   <span className="index">{indexLabel(index)}</span>
                   <h3>{card.title}</h3>
                   <p>{card.body}</p>
+                  <a className="card-link" href={card.href}>
+                    Learn more <span className="arrow">{"\u2192"}</span>
+                  </a>
                 </article>
               ))}
             </div>
@@ -169,37 +187,63 @@ export default function HomePage() {
                   <span className="work-kind">{featured.kind}</span>
                   <h3>{featured.name}</h3>
                   <WorkPoints problem={featured.problem} built={featured.built} />
+                  <a className="work-url" href={`/work/${featured.slug}`}>
+                    Read the case study <span className="arrow">{"\u2192"}</span>
+                  </a>
                   <a className="work-url" href={featured.href} target="_blank" rel="noopener noreferrer">
-                    {featured.url} <span className="arrow">→</span>
+                    {featured.url} <span className="arrow">{"\u2192"}</span>
                   </a>
                 </div>
               </article>
             ) : null}
             <div className="work-grid">
               {rest.map((item) => (
-                <a
-                  className="work-card glass-dark reveal"
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  key={item.name}
-                >
-                  <BrowserShot url={item.url} src={item.image} alt={item.alt} width={item.width} height={item.height} />
+                <article className="work-card glass-dark reveal" key={item.name}>
+                  <a className="work-shot" href={item.href} target="_blank" rel="noopener noreferrer">
+                    <BrowserShot url={item.url} src={item.image} alt={item.alt} width={item.width} height={item.height} />
+                  </a>
                   <div className="work-meta">
                     <span className="work-kind">{item.kind}</span>
                     <h3>{item.name}</h3>
                     <WorkPoints problem={item.problem} built={item.built} />
-                    <span className="work-url">
-                      {item.url} <span className="arrow">→</span>
-                    </span>
+                    <a className="work-url" href={`/work/${item.slug}`}>
+                      Read the case study <span className="arrow">{"\u2192"}</span>
+                    </a>
+                    <a className="work-url" href={item.href} target="_blank" rel="noopener noreferrer">
+                      {item.url} <span className="arrow">{"\u2192"}</span>
+                    </a>
                   </div>
-                </a>
+                </article>
               ))}
             </div>
             <p className="work-close reveal">
               {workIntro.close}
               <span className="dot">.</span>
             </p>
+          </div>
+        </section>
+
+        <section className="section check-slot" id="website-check">
+          <div className="atmosphere light" aria-hidden="true">
+            <span className="rose rose-section rose-right" />
+            <span className="glow glow-sand" />
+          </div>
+          <div className="wrap">
+            <div className="cta-band reveal">
+              <div>
+                <p className="kicker">{websiteCheckSlot.eyebrow}</p>
+                <h2>{websiteCheckSlot.title}</h2>
+                <p>{websiteCheckSlot.body}</p>
+              </div>
+              <div className="cta-actions">
+                <a className="btn btn-accent btn-lg" href="/website-check">
+                  {websiteCheckSlot.button}
+                </a>
+                <a className="text-link" href="/website-check">
+                  {websiteCheckSlot.link}
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -259,31 +303,8 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <footer className="site-footer theme-dark">
-        <div className="wrap">
-          <div className="brand">
-            <Mark />
-            <Wordmark />
-          </div>
-          <div className="footer-copy">
-            <p>
-              © 2026 10Point Studios · Conroe, TX · <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>
-            </p>
-            <p>
-              Studio projects:{" "}
-              {footerProjects.map((project, index) => (
-                <span key={project.name}>
-                  {index > 0 ? " · " : null}
-                  <a href={project.href} target="_blank" rel="noopener noreferrer">
-                    {project.name}
-                  </a>
-                </span>
-              ))}
-            </p>
-          </div>
-        </div>
-      </footer>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <SiteFooter />
+      <JsonLd data={jsonLd} />
     </>
   );
 }

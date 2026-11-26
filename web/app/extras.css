@@ -120,3 +120,264 @@ section[id] {
     text-align: left;
   }
 }
+
+
+/* SEO pack v2: inner pages, case studies, Website Check */
+
+.site-banner {
+  background: color-mix(in srgb, var(--dark) 94%, var(--accent));
+  border-bottom: 1px solid color-mix(in srgb, var(--light) 10%, transparent);
+  color: var(--light);
+  font-size: 0.95rem;
+}
+
+.site-banner .wrap {
+  align-items: center;
+  display: flex;
+  gap: 16px 28px;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+
+.site-banner p {
+  margin: 0;
+}
+
+.site-banner a {
+  color: var(--accent);
+  font-weight: 560;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-banner a:hover {
+  text-decoration: underline;
+}
+
+.page-hero {
+  padding: 64px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+  margin: 0;
+  max-width: 18em;
+}
+
+.page-hero .lede {
+  color: color-mix(in srgb, var(--light) 74%, var(--dark));
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+  margin-top: 22px;
+  max-width: 42rem;
+}
+
+.breadcrumb {
+  margin: 0 0 22px;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "\00b7";
+  margin: 0 10px;
+  opacity: 0.55;
+}
+
+.breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.prose-wrap h2 {
+  font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+
+.prose-wrap h2:not(:first-child) {
+  margin-top: 42px;
+}
+
+.prose-wrap p,
+.prose-wrap li {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 46rem;
+}
+
+.prose-wrap ul {
+  padding-left: 1.15em;
+}
+
+.card-link,
+.text-link {
+  color: var(--accent);
+  display: inline-block;
+  font-size: 0.92rem;
+  font-weight: 560;
+  margin-top: 14px;
+  text-decoration: none;
+}
+
+.card-link:hover,
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.theme-dark .card-link,
+.theme-dark .text-link {
+  color: var(--accent);
+}
+
+article.work-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+article.work-card .work-shot {
+  display: block;
+}
+
+.cards.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cta-actions {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.to-confirm {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  color: var(--fg);
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.86rem;
+  font-weight: 520;
+  line-height: 1.45;
+  margin: 8px 0 12px;
+  max-width: 46rem;
+  padding: 8px 12px;
+}
+
+.theme-dark .to-confirm {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--light);
+}
+
+.check-field {
+  gap: 8px;
+}
+
+.check-label {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.check-label input {
+  margin-top: 4px;
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: none;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 8px 0 20px;
+}
+
+.compare-table {
+  border-collapse: collapse;
+  min-width: 640px;
+  width: 100%;
+}
+
+.compare-table th,
+.compare-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.compare-table thead th {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.compare-table tbody th {
+  width: 20%;
+}
+
+.faq {
+  display: grid;
+  gap: 22px;
+  margin: 0;
+  max-width: 46rem;
+}
+
+.faq dt {
+  font-weight: 620;
+  margin: 0 0 6px;
+}
+
+.faq dd {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.case-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+@media (max-width: 1100px) {
+  .cards.four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .cards.four {
+    grid-template-columns: 1fr;
+  }
+
+  .site-banner .wrap {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

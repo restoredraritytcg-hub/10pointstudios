@@ -5,9 +5,10 @@ import { contactCopy } from "@/lib/content";
 import { CONTACT_CC, CONTACT_ENDPOINT, STUDIO_EMAIL, inquiryMailto } from "@/lib/site";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const WEBSITE_CHECK = "A free Website Check";
 
 type Fields = { name: string; email: string; need: string; message: string };
-type Errors = Partial<Record<keyof Fields, string>>;
+type Errors = Partial<Record<keyof Fields | "authorized", string>>;
 type Status =
   | { kind: "idle" }
   | { kind: "invalid" }
@@ -16,7 +17,7 @@ type Status =
 
 const empty: Fields = { name: "", email: "", need: "", message: "" };
 
-function validate(fields: Fields): Errors {
+function validate(fields: Fields, authorized: boolean): Errors {
   const errors: Errors = {};
   if (!fields.name.trim()) errors.name = "Enter your name.";
   if (!fields.email.trim()) errors.email = "Enter your email.";
@@ -25,6 +26,9 @@ function validate(fields: Fields): Errors {
   if (!fields.message.trim()) errors.message = "Tell us a little about the project.";
   else if (fields.message.trim().length < 10) {
     errors.message = "Add a few more words about the project.";
+  }
+  if (fields.need === WEBSITE_CHECK && !authorized) {
+    errors.authorized = contactCopy.authorizationError;
   }
   return errors;
 }
@@ -61,13 +65,15 @@ function accepted(data: { success?: unknown; message?: unknown }) {
   return message.includes("activation") || message.includes("activate form");
 }
 
-export function ContactForm() {
-  const [fields, setFields] = useState<Fields>(empty);
+export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
+  const [fields, setFields] = useState<Fields>({ ...empty, need: defaultNeed });
+  const [authorized, setAuthorized] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [sending, setSending] = useState(false);
   const [honey, setHoney] = useState("");
   const statusId = useId();
+  const needsAuthorization = fields.need === WEBSITE_CHECK;
 
   function set<K extends keyof Fields>(key: K, value: Fields[K]) {
     setFields((current) => ({ ...current, [key]: value }));
@@ -75,7 +81,7 @@ export function ContactForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const nextErrors = validate(fields);
+    const nextErrors = validate(fields, authorized);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       setStatus({ kind: "invalid" });
@@ -86,7 +92,7 @@ export function ContactForm() {
       return;
     }
 
-    const draft = inquiryMailto(fields);
+    const draft = inquiryMailto({ ...fields, authorized: needsAuthorization ? authorized : undefined });
     if (!CONTACT_ENDPOINT) {
       window.location.href = draft;
       setStatus({ kind: "error" });
@@ -96,24 +102,31 @@ export function ContactForm() {
     setSending(true);
     setStatus({ kind: "idle" });
     try {
+      const payload: Record<string, string> = {
+        name: fields.name.trim(),
+        email: fields.email.trim(),
+        need: fields.need,
+        message: fields.message.trim(),
+        _subject: needsAuthorization
+          ? "Free Website Check request \u2014 10Point Studios"
+          : "Project inquiry \u2014 10Point Studios",
+        _template: "table",
+        _captcha: "false",
+        _honey: "",
+        _cc: CONTACT_CC,
+        _replyto: fields.email.trim(),
+      };
+      if (needsAuthorization && authorized) {
+        payload.authorization = contactCopy.authorization;
+        payload.authorized = "yes";
+      }
       const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({
-          name: fields.name.trim(),
-          email: fields.email.trim(),
-          need: fields.need,
-          message: fields.message.trim(),
-          _subject: "Project inquiry — 10Point Studios",
-          _template: "table",
-          _captcha: "false",
-          _honey: "",
-          _cc: CONTACT_CC,
-          _replyto: fields.email.trim(),
-        }),
+        body: JSON.stringify(payload),
       });
       const data = (await response.json().catch(() => null)) as {
         success?: unknown;
@@ -122,7 +135,8 @@ export function ContactForm() {
       if (!response.ok || !data || !accepted(data)) {
         throw new Error("rejected");
       }
-      setFields(empty);
+      setFields({ ...empty, need: defaultNeed });
+      setAuthorized(false);
       setErrors({});
       setStatus({ kind: "success" });
     } catch {
@@ -141,7 +155,7 @@ export function ContactForm() {
           ? contactCopy.error
           : "";
 
-  const mailto = inquiryMailto(fields);
+  const mailto = inquiryMailto({ ...fields, authorized: needsAuthorization ? authorized : undefined });
 
   return (
     <form className="form glass-dark reveal" action="#" method="post" noValidate onSubmit={onSubmit}>
@@ -211,6 +225,27 @@ export function ContactForm() {
           onChange={(event) => set("message", event.target.value)}
         />
       </Field>
+      {needsAuthorization ? (
+        <div className="field check-field">
+          <label className="check-label" htmlFor="authorized">
+            <input
+              id="authorized"
+              name="authorized"
+              type="checkbox"
+              checked={authorized}
+              aria-invalid={errors.authorized ? true : undefined}
+              aria-describedby={errors.authorized ? "authorized-error" : undefined}
+              onChange={(event) => setAuthorized(event.target.checked)}
+            />
+            <span>{contactCopy.authorization}</span>
+          </label>
+          {errors.authorized ? (
+            <p className="field-error" id="authorized-error">
+              {errors.authorized}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
       <button className="btn btn-accent btn-lg" type="submit" disabled={sending}>
         {sending ? "Sending\u2026" : "Send"}
       </button>
