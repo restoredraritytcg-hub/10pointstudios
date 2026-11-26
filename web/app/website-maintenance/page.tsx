@@ -39,7 +39,7 @@ export default function WebsiteMaintenancePage() {
         <h2>Reply time</h2>
         <p>{page.reply}</p>
         <div className="case-links">
-          <a className="btn btn-accent btn-lg" href="/website-check">
+          <a className="btn btn-accent btn-lg" href="/website-check/">
             Get my free Website Check
           </a>
           <a className="btn btn-ghost" href="/#contact">
