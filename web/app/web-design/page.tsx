@@ -72,7 +72,7 @@ export default function WebDesignPage() {
         <h2>Service area</h2>
         <p>{page.area}</p>
         <div className="case-links">
-          <a className="btn btn-accent btn-lg" href="/website-check">
+          <a className="btn btn-accent btn-lg" href="/website-check/">
             Get my free Website Check
           </a>
           <a className="btn btn-ghost" href="/#contact">

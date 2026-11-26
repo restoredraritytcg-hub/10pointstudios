@@ -6,6 +6,7 @@ export function BrowserShot({
   height,
   tall = false,
   className = "device browser",
+  priority = false,
 }: {
   url: string;
   src: string;
@@ -14,6 +15,8 @@ export function BrowserShot({
   height: number;
   tall?: boolean;
   className?: string;
+  /** Only the page's hero / LCP screenshot. Everything else lazy-loads. */
+  priority?: boolean;
 }) {
   return (
     <figure className={className}>
@@ -26,7 +29,11 @@ export function BrowserShot({
         <span className="url">{url}</span>
       </div>
       <div className={tall ? "shot tall" : "shot"}>
-        <img src={src} alt={alt} width={width} height={height} />
+        {priority ? (
+          <img src={src} alt={alt} width={width} height={height} fetchPriority="high" decoding="async" />
+        ) : (
+          <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+        )}
       </div>
     </figure>
   );

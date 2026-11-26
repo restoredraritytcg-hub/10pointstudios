@@ -55,7 +55,7 @@ export default function AppDevelopmentPage() {
         <h2>Who builds it</h2>
         <p className="about-body">{about.body}</p>
         <div className="case-links">
-          <a className="btn btn-accent btn-lg" href="/website-check">
+          <a className="btn btn-accent btn-lg" href="/website-check/">
             Get my free Website Check
           </a>
           <a className="btn btn-ghost" href="/#contact">

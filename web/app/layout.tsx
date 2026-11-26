@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { preload } from "react-dom";
 import { SiteBehaviors } from "@/components/SiteBehaviors";
 import {
   META_DESCRIPTION,
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: META_DESCRIPTION,
   applicationName: "10Point Studios",
+  referrer: "strict-origin-when-cross-origin",
   authors: [{ name: "Scott Shipley" }],
   robots: { index: true, follow: true },
   openGraph: {
@@ -55,7 +57,13 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// Preloaded so the heading font is not discovered late via the CSS file.
+// TODO(woff2): swap to /fonts/InstrumentSans-Variable.woff2 (type font/woff2) once
+// that binary is committed; it is 88 KB versus 193 KB for this TTF.
+const HEADING_FONT = "/fonts/InstrumentSans_Variable-s.p.03qm8unt6-8hy.ttf";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  preload(HEADING_FONT, { as: "font", type: "font/ttf", crossOrigin: "anonymous" });
   return (
     <html lang="en" data-palette="petrol" className="KYc23q_variable">
       <body>

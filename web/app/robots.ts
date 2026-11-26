@@ -8,6 +8,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      // Source tree (served until Pages deploys from the Actions artifact),
+      // the RSC payload for the home page, and the 404 document.
+      disallow: ["/web/", "/index.txt", "/404.html", "/404/"],
     },
     host: SITE_URL,
     sitemap: `${SITE_URL}/sitemap.xml`,

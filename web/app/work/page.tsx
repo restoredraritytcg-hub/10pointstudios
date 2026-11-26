@@ -22,7 +22,7 @@ export default function WorkIndexPage() {
     >
       <PageHero kicker={workIntro.eyebrow} title={workIndex.h1} intro={workIntro.intro} crumbs={[
         { href: "/", label: "Home" },
-        { href: "/work", label: "Work" },
+        { href: "/work/", label: "Work" },
       ]} />
       <Section dark>
         <div className="work-grid">
@@ -36,7 +36,7 @@ export default function WorkIndexPage() {
                   <span className="work-label">Problem</span>
                   {item.problem}
                 </p>
-                <a className="work-url" href={`/work/${item.slug}`}>
+                <a className="work-url" href={`/work/${item.slug}/`}>
                   Read the case study <span className="arrow">{"\u2192"}</span>
                 </a>
               </div>

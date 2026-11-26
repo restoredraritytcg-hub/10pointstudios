@@ -1,3 +1,8 @@
 web/node_modules
 web/.next
 web/out
+
+# Env files are never committed. The contact endpoint and CC have public
+# defaults in web/lib/site.ts; override them in the build environment instead.
+.env*
+!.env.example

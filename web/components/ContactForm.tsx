@@ -87,10 +87,8 @@ export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
       setStatus({ kind: "invalid" });
       return;
     }
-    if (honey.trim()) {
-      setStatus({ kind: "success" });
-      return;
-    }
+    // The honeypot value is sent to FormSubmit as _honey, which silently drops
+    // filled submissions. The visitor (or bot) still sees the normal success state.
 
     const draft = inquiryMailto({ ...fields, authorized: needsAuthorization ? authorized : undefined });
     if (!CONTACT_ENDPOINT) {
@@ -111,9 +109,9 @@ export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
           ? "Free Website Check request \u2014 10Point Studios"
           : "Project inquiry \u2014 10Point Studios",
         _template: "table",
-        _captcha: "false",
-        _honey: "",
-        _cc: CONTACT_CC,
+        _captcha: "true",
+        _honey: honey,
+        ...(CONTACT_CC ? { _cc: CONTACT_CC } : {}),
         _replyto: fields.email.trim(),
       };
       if (needsAuthorization && authorized) {

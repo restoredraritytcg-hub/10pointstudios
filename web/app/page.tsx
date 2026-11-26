@@ -61,7 +61,7 @@ export default function HomePage() {
           <p>
             <strong>{websiteCheckBanner.label}</strong> {websiteCheckBanner.body}
           </p>
-          <a href="/website-check">{websiteCheckBanner.button}</a>
+          <a href="/website-check/">{websiteCheckBanner.button}</a>
         </div>
       </div>
       <main id="main">
@@ -119,6 +119,7 @@ export default function HomePage() {
                 alt="ScanStationIQ listing app, built by 10Point Studios"
                 width={1440}
                 height={900}
+                priority
               />
             </div>
           </div>
@@ -187,7 +188,7 @@ export default function HomePage() {
                   <span className="work-kind">{featured.kind}</span>
                   <h3>{featured.name}</h3>
                   <WorkPoints problem={featured.problem} built={featured.built} />
-                  <a className="work-url" href={`/work/${featured.slug}`}>
+                  <a className="work-url" href={`/work/${featured.slug}/`}>
                     Read the case study <span className="arrow">{"\u2192"}</span>
                   </a>
                   <a className="work-url" href={featured.href} target="_blank" rel="noopener noreferrer">
@@ -206,7 +207,7 @@ export default function HomePage() {
                     <span className="work-kind">{item.kind}</span>
                     <h3>{item.name}</h3>
                     <WorkPoints problem={item.problem} built={item.built} />
-                    <a className="work-url" href={`/work/${item.slug}`}>
+                    <a className="work-url" href={`/work/${item.slug}/`}>
                       Read the case study <span className="arrow">{"\u2192"}</span>
                     </a>
                     <a className="work-url" href={item.href} target="_blank" rel="noopener noreferrer">
@@ -236,10 +237,10 @@ export default function HomePage() {
                 <p>{websiteCheckSlot.body}</p>
               </div>
               <div className="cta-actions">
-                <a className="btn btn-accent btn-lg" href="/website-check">
+                <a className="btn btn-accent btn-lg" href="/website-check/">
                   {websiteCheckSlot.button}
                 </a>
-                <a className="text-link" href="/website-check">
+                <a className="text-link" href="/website-check/">
                   {websiteCheckSlot.link}
                 </a>
               </div>

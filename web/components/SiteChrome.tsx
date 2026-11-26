@@ -13,7 +13,7 @@ export function SiteHeader() {
         </a>
         <nav className="nav" aria-label="Primary">
           <a href="/#services">Capabilities</a>
-          <a href="/work">Work</a>
+          <a href="/work/">Work</a>
           <a href="/#process">Process</a>
           <a href="/#about">About</a>
           <a className="btn btn-accent" href="/#contact">

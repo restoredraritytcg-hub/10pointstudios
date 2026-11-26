@@ -2,7 +2,7 @@ import { CaseStudyView } from "@/components/InnerPages";
 import { PageShell } from "@/components/SiteChrome";
 import { work } from "@/lib/content";
 import { pageMeta } from "@/lib/meta";
-import { caseStudies } from "@/lib/pages";
+import { caseStudies, caseStudyPublished } from "@/lib/pages";
 import { articleGraph } from "@/lib/schema";
 
 const slug = "pbg-cards-htx" as const;
@@ -15,6 +15,10 @@ export const metadata = pageMeta({
   path: study.path,
   image: item.image,
   imageAlt: item.alt,
+  imageWidth: item.width,
+  imageHeight: item.height,
+  type: "article",
+  publishedTime: caseStudyPublished[slug],
 });
 
 export default function Page() {
@@ -25,9 +29,10 @@ export default function Page() {
         path: study.path,
         image: item.image,
         about: study.about,
+        datePublished: caseStudyPublished[slug],
         crumbs: [
           { name: "Home", path: "/" },
-          { name: "Work", path: "/work" },
+          { name: "Work", path: "/work/" },
           { name: item.name, path: study.path },
         ],
       })}

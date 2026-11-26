@@ -20,47 +20,47 @@ export const capabilities = [
   {
     title: "Managed maintenance after launch",
     body: "We don’t hand over a zip file and disappear. Updates, fixes, content changes and care for the sites and apps we build, with a single place to ask.",
-    href: "/website-maintenance",
+    href: "/website-maintenance/",
   },
   {
     title: "Service intake that runs the shop",
     body: "Multi-item request forms with photos, service choices, and hand-off options. Customers start a job online; you confirm the work before anything is shipped.",
-    href: "/web-design",
+    href: "/web-design/",
   },
   {
     title: "Quote calculators you control",
     body: "Live totals from service tiers, add-ons, and referral codes. The number is a starting point you can still confirm with the customer.",
-    href: "/web-design",
+    href: "/web-design/",
   },
   {
     title: "Where is my order? pages",
     body: "Customers look up a reference number or scan a receipt and see the stage, notes, and next step without calling the shop.",
-    href: "/web-design",
+    href: "/web-design/",
   },
   {
     title: "Scan-powered listing and intake tools",
     body: "A crooked phone photo or scanner page comes out straightened, measured for centering, and cut into the close-ups a listing or a workbench needs.",
-    href: "/app-development",
+    href: "/app-development/",
   },
   {
     title: "Counter apps and staff portals",
     body: "An installable iPad check-in, a staff dashboard for orders and payouts, and a private admin for photos, notes, and status.",
-    href: "/app-development",
+    href: "/app-development/",
   },
   {
     title: "Shop sites that stay current",
     body: "Hours, open-now status, maps, promotions, and homepage photos you can update yourself, plus the local SEO a storefront needs.",
-    href: "/web-design",
+    href: "/web-design/",
   },
   {
     title: "Accounts, plans, and installable web apps",
     body: "Sign-in, subscription plans, and a home-screen app so a tool feels like a product, not a brochure.",
-    href: "/app-development",
+    href: "/app-development/",
   },
   {
     title: "Galleries, shows, and reviews",
     body: "Before-and-after work, upcoming event calendars, and a review form that only goes live after you approve it.",
-    href: "/web-design",
+    href: "/web-design/",
   },
 ] as const;
 

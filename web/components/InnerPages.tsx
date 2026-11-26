@@ -82,7 +82,7 @@ export function WorkTeasers({ slugs }: { slugs: readonly string[] }) {
               <span className="work-label">Problem</span>
               {item.problem}
             </p>
-            <a className="work-url" href={`/work/${item.slug}`}>
+            <a className="work-url" href={`/work/${item.slug}/`}>
               Read the case study <span className="arrow">{"\u2192"}</span>
             </a>
           </div>
@@ -131,7 +131,7 @@ export function CaseStudyView({ slug }: { slug: CaseSlug }) {
   if (!item) return null;
   const crumbs = [
     { href: "/", label: "Home" },
-    { href: "/work", label: "Work" },
+    { href: "/work/", label: "Work" },
     { href: study.path, label: item.name },
   ];
   const utm = slug === "scanstationiq" || slug === "restored-rarity";
@@ -140,7 +140,14 @@ export function CaseStudyView({ slug }: { slug: CaseSlug }) {
       <PageHero kicker="Case study" title={study.h1} crumbs={crumbs} />
       {item.image ? (
         <Section dark>
-          <BrowserShot url={item.url} src={item.image} alt={item.alt} width={item.width} height={item.height} />
+          <BrowserShot
+            url={item.url}
+            src={item.image}
+            alt={item.alt}
+            width={item.width}
+            height={item.height}
+            priority
+          />
         </Section>
       ) : null}
       <Section>
