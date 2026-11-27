@@ -6,6 +6,7 @@ export const dynamic = "force-static";
 
 const routes = [
   "/",
+  "/privacy/",
   servicePages["web-design"].path,
   servicePages["app-development"].path,
   servicePages["website-maintenance"].path,
