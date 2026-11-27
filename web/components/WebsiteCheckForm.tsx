@@ -2,6 +2,7 @@
 
 import { useId, useState, type FormEvent, type ReactNode } from "react";
 import { contactCopy } from "@/lib/content";
+import { leadSource } from "@/lib/lead-source";
 import { CONTACT_CC, CONTACT_ENDPOINT, STUDIO_EMAIL, inquiryMailto } from "@/lib/site";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -122,6 +123,7 @@ export function WebsiteCheckForm() {
           _honey: honey,
           ...(CONTACT_CC ? { _cc: CONTACT_CC } : {}),
           _replyto: fields.email.trim(),
+          ...leadSource(),
         }),
       });
       const data = (await response.json().catch(() => null)) as {
@@ -135,6 +137,7 @@ export function WebsiteCheckForm() {
       setAuthorized(false);
       setErrors({});
       setStatus({ kind: "success" });
+      window.location.assign("/thanks/");
     } catch {
       setStatus({ kind: "error" });
     } finally {
@@ -188,6 +191,7 @@ export function WebsiteCheckForm() {
           type="text"
           autoComplete="name"
           placeholder="Your name"
+          required
           value={fields.name}
           aria-invalid={errors.name ? true : undefined}
           aria-describedby={errors.name ? "check-name-error" : undefined}
@@ -201,6 +205,7 @@ export function WebsiteCheckForm() {
           type="email"
           autoComplete="email"
           placeholder="you@company.com"
+          required
           value={fields.email}
           aria-invalid={errors.email ? true : undefined}
           aria-describedby={errors.email ? "check-email-error" : undefined}
@@ -215,6 +220,7 @@ export function WebsiteCheckForm() {
           inputMode="url"
           autoComplete="url"
           placeholder="https://"
+          required
           value={fields.website}
           aria-invalid={errors.website ? true : undefined}
           aria-describedby={errors.website ? "check-website-error" : undefined}
@@ -226,6 +232,7 @@ export function WebsiteCheckForm() {
           id="check-message"
           name="message"
           placeholder="A little about your business."
+          required
           value={fields.message}
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "check-message-error" : undefined}

@@ -7,6 +7,7 @@ export const hero = {
     "Enterprise-grade websites and apps at small-business prices, with design, build and managed maintenance under one roof.",
   primary: "Start a project",
   secondary: "See the work",
+  location: "Conroe, The Woodlands, and Houston",
 } as const;
 
 export const capabilitiesIntro = {

@@ -56,14 +56,14 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <div className="site-banner">
+      <aside className="site-banner" aria-label="Announcement">
         <div className="wrap">
           <p>
             <strong>{websiteCheckBanner.label}</strong> {websiteCheckBanner.body}
           </p>
           <a href="/website-check/">{websiteCheckBanner.button}</a>
         </div>
-      </div>
+      </aside>
       <main id="main">
         <section className="hero theme-dark" id="top">
           <div className="atmosphere" aria-hidden="true">
@@ -80,6 +80,7 @@ export default function HomePage() {
                 Websites and apps, built to a 10<span className="dot">.</span>
               </h1>
               <p className="lede">{hero.subhead}</p>
+              <p className="hero-location">{hero.location}</p>
               <div className="hero-cta">
                 <a className="btn btn-accent btn-lg" href="#contact">
                   {hero.primary}

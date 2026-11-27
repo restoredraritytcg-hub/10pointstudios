@@ -2,6 +2,7 @@
 
 import { useId, useState, type FormEvent, type ReactNode } from "react";
 import { contactCopy } from "@/lib/content";
+import { leadSource } from "@/lib/lead-source";
 import { CONTACT_CC, CONTACT_ENDPOINT, STUDIO_EMAIL, inquiryMailto } from "@/lib/site";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -113,6 +114,7 @@ export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
         _honey: honey,
         ...(CONTACT_CC ? { _cc: CONTACT_CC } : {}),
         _replyto: fields.email.trim(),
+        ...leadSource(),
       };
       if (needsAuthorization && authorized) {
         payload.authorization = contactCopy.authorization;
@@ -137,6 +139,7 @@ export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
       setAuthorized(false);
       setErrors({});
       setStatus({ kind: "success" });
+      window.location.assign("/thanks/");
     } catch {
       setStatus({ kind: "error" });
     } finally {
@@ -176,6 +179,7 @@ export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
           type="text"
           autoComplete="name"
           placeholder="Your name"
+          required
           value={fields.name}
           aria-invalid={errors.name ? true : undefined}
           aria-describedby={errors.name ? "name-error" : undefined}
@@ -189,6 +193,7 @@ export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
           type="email"
           autoComplete="email"
           placeholder="you@company.com"
+          required
           value={fields.email}
           aria-invalid={errors.email ? true : undefined}
           aria-describedby={errors.email ? "email-error" : undefined}
@@ -199,6 +204,7 @@ export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
         <select
           id="need"
           name="need"
+          required
           value={fields.need}
           aria-invalid={errors.need ? true : undefined}
           aria-describedby={errors.need ? "need-error" : undefined}
@@ -217,6 +223,7 @@ export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
           id="message"
           name="message"
           placeholder={"A few sentences on what you\u2019re trying to do."}
+          required
           value={fields.message}
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "message-error" : undefined}
@@ -230,6 +237,7 @@ export function ContactForm({ defaultNeed = "" }: { defaultNeed?: string }) {
               id="authorized"
               name="authorized"
               type="checkbox"
+              required
               checked={authorized}
               aria-invalid={errors.authorized ? true : undefined}
               aria-describedby={errors.authorized ? "authorized-error" : undefined}
