@@ -7,7 +7,7 @@ export function SiteHeader() {
   return (
     <header className="site-header theme-dark">
       <div className="wrap">
-        <a className="brand" href="/" aria-label="10Point Studios home">
+        <a className="brand" href="/">
           <Mark />
           <Wordmark />
         </a>
