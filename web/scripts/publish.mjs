@@ -29,6 +29,8 @@ const stale = [
   "app-development",
   "website-maintenance",
   "website-check",
+  "privacy",
+  "thanks",
   "work",
   "404",
   "fonts",
