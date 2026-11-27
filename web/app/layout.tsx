@@ -58,8 +58,8 @@ export const viewport: Viewport = {
 };
 
 // Preloaded so the heading font is not discovered late via the CSS file.
-// TODO(woff2): swap to /fonts/InstrumentSans-Variable.woff2 (type font/woff2) once
-// that binary is committed; it is 88 KB versus 193 KB for this TTF.
+// WOFF2 is prepared locally (88 KB vs 193 KB TTF) but is not in this PR because
+// the GitHub write tools cannot commit binary files.
 const HEADING_FONT = "/fonts/InstrumentSans_Variable-s.p.03qm8unt6-8hy.ttf";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

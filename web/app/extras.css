@@ -381,3 +381,87 @@ article.work-card .work-shot {
     gap: 8px;
   }
 }
+
+
+/* Audit follow-up: contrast, location line, reduced motion */
+.theme-dark {
+  --muted: color-mix(in srgb, var(--light) 82%, var(--dark));
+}
+
+.site-header,
+.site-header.is-scrolled {
+  background: var(--dark);
+}
+
+.site-footer.theme-dark {
+  background: var(--dark);
+}
+
+.site-header .brand,
+.site-header .brand .point,
+.site-header .brand .studios,
+.site-footer .brand,
+.site-footer .brand .point,
+.site-footer .brand .studios {
+  color: var(--light);
+}
+
+.nav a:not(.btn) {
+  opacity: 1;
+  color: var(--light);
+}
+
+.site-banner {
+  background: var(--dark);
+}
+
+.site-banner a {
+  color: var(--light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-banner a:hover {
+  color: var(--accent);
+}
+
+.footer-copy {
+  color: color-mix(in srgb, var(--light) 82%, var(--dark));
+}
+
+.theme-dark .btn-ghost,
+.btn-ghost {
+  color: var(--light);
+  background: color-mix(in srgb, var(--light) 10%, transparent);
+  border-color: color-mix(in srgb, var(--light) 40%, transparent);
+}
+
+.device .chrome .url {
+  color: color-mix(in srgb, var(--light) 82%, var(--dark));
+}
+
+.hero-location {
+  margin: 14px 0 0;
+  font-size: 1rem;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  color: var(--light);
+}
+
+.theme-dark .hero-location {
+  color: color-mix(in srgb, var(--light) 88%, var(--dark));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ring-spin,
+  .atmosphere .glow,
+  .atmosphere .rose,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+  }
+}
