@@ -39,6 +39,8 @@ export function SiteFooter() {
         <div className="footer-copy">
           <p>
             © 2026 10Point Studios · Conroe, TX · <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>
+            {" · "}
+            <a href="/privacy/">Privacy</a>
           </p>
           <p>
             {footerServices.map((item, index) => (
